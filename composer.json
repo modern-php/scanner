@@ -1,0 +1,32 @@
+{
+    "name": "modernphp/scanner",
+    "description": "Scan URLs from a CSV file and report inaccessible URLs",
+    "keywords": ["url", "scanner", "csv"],
+    "homepage": "http://shop.oreilly.com/product/0636920033868.do",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josh Lockhart",
+            "homepage": "https://github.com/codeguy",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "hello@joshlockhart.com"
+    },
+    "require": {
+        "php" : ">=5.4.0",
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    },
+    "suggest": {
+        "league/csv": "Lets you quickly parse URLs from CSV data into an array"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oreilly\\ModernPHP\\": "src/"
+        }
+    }
+}
