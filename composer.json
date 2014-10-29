@@ -1,6 +1,6 @@
 {
     "name": "modernphp/scanner",
-    "description": "Scan URLs from a CSV file and report inaccessible URLs",
+    "description": "Scan an array of URLs and report inaccessible URLs",
     "keywords": ["url", "scanner", "csv"],
     "homepage": "http://shop.oreilly.com/product/0636920033868.do",
     "license": "MIT",
