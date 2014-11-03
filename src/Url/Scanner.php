@@ -55,7 +55,7 @@ class Scanner
      */
     protected function getStatusCodeForUrl($url)
     {
-        $httpResponse = $this->httpClient->options($url);
+        $httpResponse = $this->httpClient->get($url);
 
         return $httpResponse->getStatusCode();
     }
