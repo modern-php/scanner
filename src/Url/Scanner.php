@@ -1,6 +1,8 @@
 <?php
 namespace Oreilly\ModernPHP\Url;
 
+use GuzzleHttp\Client;
+
 class Scanner
 {
     /**
@@ -9,7 +11,7 @@ class Scanner
     protected $urls;
 
     /**
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     protected $httpClient;
 
@@ -20,7 +22,7 @@ class Scanner
     public function __construct(array $urls)
     {
         $this->urls = $urls;
-        $this->httpClient = new \GuzzleHttp\Client();
+        $this->httpClient = new Client();
     }
 
     /**
@@ -30,6 +32,7 @@ class Scanner
     public function getInvalidUrls()
     {
         $invalidUrls = [];
+
         foreach ($this->urls as $url) {
             try {
                 $statusCode = $this->getStatusCodeForUrl($url);
@@ -37,7 +40,7 @@ class Scanner
                 $statusCode = 500;
             }
 
-            if ($statusCode >= 400) {
+            if ($this->invalidHttpRequest($statusCode)) {
                 array_push($invalidUrls, [
                     'url' => $url,
                     'status' => $statusCode
@@ -58,5 +61,15 @@ class Scanner
         $httpResponse = $this->httpClient->options($url);
 
         return $httpResponse->getStatusCode();
+    }
+
+    /**
+     * Determine if the status code provided is valid or not
+     * @param $statusCode
+     * @return bool
+     */
+    private function invalidHttpRequest($statusCode)
+    {
+        return $statusCode >= 400;
     }
 }
